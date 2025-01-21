@@ -58,7 +58,7 @@ const HomeSection = () => {
 
   return (
     // Original draft (Grid)
-    <div className="w-full ">
+    <div className="w-full">
       {/* Background Content */}
       <div
         className={`w-full flex flex-col items-center absolute top-0 left-0 ${
@@ -66,7 +66,7 @@ const HomeSection = () => {
         }`}
       >
         <div className="flex w-screen items-center overflow-hidden md:overflow-visible justify-center opacity-25 h-[32.5dvh] space-x-4 md:animate-scroll-right">
-          {Array.from({ length: 99 }).map((_, index) => (
+          {Array.from({ length: 98 }).map((_, index) => (
             <img
               key={index}
               src="/example/1.jpg"
@@ -76,7 +76,7 @@ const HomeSection = () => {
             />
           ))}
         </div>
-        <div className="flex items-center justify-center h-[35dvh] md:w-[90%] overflow-hidden">
+        <div className="flex items-center justify-center h-[35dvh] w-screen md:w-[90%] overflow-hidden">
           <div className="h-full items-center justify-center rounded-lg">
             <div className="flex md:animate-scroll-left space-x-4 py-4 items-center justify-center w-full h-full rounded-lg">
               {Array.from({ length: 99 }).map((_, index) => (
@@ -93,8 +93,8 @@ const HomeSection = () => {
             </div>
           </div>
         </div>
-        <div className="flex items-center overflow-hidden md:overflow-visible justify-center opacity-25 h-[32.5dvh] space-x-4 md:animate-scroll-right">
-          {Array.from({ length: 99 }).map((_, index) => (
+        <div className="flex w-screen items-center md:w-full overflow-hidden md:overflow-visible justify-center opacity-25 h-[32.5dvh] space-x-4 md:animate-scroll-right">
+          {Array.from({ length: 98 }).map((_, index) => (
             <img
               key={index}
               src="/example/1.jpg"
