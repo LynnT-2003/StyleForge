@@ -39,11 +39,11 @@ export default function RootLayout({
       <head>
         <Head>
           {/* Global Metadata */}
-          <title>PrismaForge.Ai</title>
+          <title>StyleForge.Ai</title>
           <meta name="description" content="Create your own AI Characters" />
 
           {/* Open Graph / Social Media Metadata */}
-          <meta property="og:title" content="PrismaForge.Ai" />
+          <meta property="og:title" content="StyleForge.Ai" />
           <meta
             property="og:description"
             content="Create your own AI Characters"
@@ -55,7 +55,7 @@ export default function RootLayout({
           <meta property="og:url" content="https://yourwebsite.com" />
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:creator" content="@yourTwitterHandle" />
-          <meta name="twitter:title" content="PrismaForge.Ai" />
+          <meta name="twitter:title" content="StyleForge.Ai" />
           <meta
             name="twitter:description"
             content="Create your own AI Characters"

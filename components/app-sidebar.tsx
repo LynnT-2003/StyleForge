@@ -87,7 +87,7 @@ export function AppSidebar() {
             /> */}
             <SidebarTrigger className="absolute w-[24px] h-[24px] rounded-full bg-[#121212] flex items-center justify-center z-50" />
             <SidebarGroupLabel className="text-2xl text-white font-medium font-sans mt-0 ml-0">
-              PrismaForge
+              StyleForge
             </SidebarGroupLabel>
           </div>
 
