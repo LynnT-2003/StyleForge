@@ -21,7 +21,10 @@ const StudioSection = () => {
       </h1>
       <div className="w-full flex flex-wrap gap-6 md:gap-8 px-0 md:px-8 justify-center mt-4">
         {hairstyles.map((hairstyle) => (
-          <div className="w-[45%] md:w-[240px] hover:cursor-pointer hover:opacity-70">
+          <div
+            className="w-[45%] md:w-[240px] hover:cursor-pointer hover:opacity-70"
+            key={hairstyle.name}
+          >
             <img src={hairstyle.image} alt="" className="w-full" />
             <h1 className="mt-1 text-center">{hairstyle.name}</h1>
           </div>

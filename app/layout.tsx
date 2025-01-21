@@ -94,7 +94,7 @@ export default function RootLayout({
                 /> */}
                 <MobileSidebarItem
                   icon={<Image />}
-                  text="Media"
+                  text="Studio"
                   active={false}
                   alert={false}
                   route={"/Test"}

@@ -11,12 +11,12 @@ import {
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDvvKMnVg9oBSxuVpt8ulGbAD0uYOyVxMI",
-  authDomain: "prismaforge-a992d.firebaseapp.com",
-  projectId: "prismaforge-a992d",
-  storageBucket: "prismaforge-a992d.appspot.com",
-  messagingSenderId: "655784851397",
-  appId: "1:655784851397:web:fe49cd4c0b9036bf0a3dac",
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY!,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN!,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID!,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET!,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID!,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID!,
 };
 
 // Initialize Firebase
