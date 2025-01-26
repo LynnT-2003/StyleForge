@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { GetServerSideProps } from "next";
+import { useParams } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import Webcam from "react-webcam";
@@ -12,7 +12,8 @@ interface ModelDetailPageProps {
   model: string;
 }
 
-const ModelDetailPage: React.FC<ModelDetailPageProps> = ({ model }) => {
+const ModelDetailPage: React.FC = () => {
+  const { model } = useParams<{ model: string }>();
   const [isCameraOpen, setIsCameraOpen] = useState(false);
   const webcamRef = useRef<Webcam>(null);
   const cameraModalRef = useRef<HTMLDivElement | null>(null);
@@ -43,7 +44,9 @@ const ModelDetailPage: React.FC<ModelDetailPageProps> = ({ model }) => {
       if (imageSrc) {
         // setFile(imageSrc); // Set the captured image as the file
         localStorage.setItem("uploadedFile", imageSrc);
-        localStorage.setItem("model", model);
+        if (model) {
+          localStorage.setItem("model", model);
+        }
         console.log("Captured Image: ", imageSrc);
         setIsCameraOpen(false);
         router.push("/image-upload/upload-success");
@@ -223,13 +226,6 @@ const ModelDetailPage: React.FC<ModelDetailPageProps> = ({ model }) => {
       </div>
     </div>
   );
-};
-
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  const { model } = params as { model: string }; // Access dynamic parameter
-  return {
-    props: { model }, // Pass model as a prop to the page
-  };
 };
 
 export default ModelDetailPage;
