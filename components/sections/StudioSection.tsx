@@ -1,6 +1,10 @@
+"use client";
 import React from "react";
+import { useRouter } from "next/navigation";
 
 const StudioSection = () => {
+  const router = useRouter();
+
   const hairstyles = [
     { name: "Luxe Waves", image: "/example/1.jpg" },
     { name: "Sleek & Chic Bob", image: "/example/1.jpg" },
@@ -14,6 +18,12 @@ const StudioSection = () => {
     { name: "Beachy Lob", image: "/example/1.jpg" },
   ];
 
+  const handleStyleClicked = (style: string) => {
+    console.log(style);
+    localStorage.setItem("style", style);
+    router.push("/image-upload");
+  };
+
   return (
     <div className="w-full">
       <h1 className="text-center text-lg md:text-xl font-semibold">
@@ -24,6 +34,9 @@ const StudioSection = () => {
           <div
             className="w-[45%] md:w-[240px] hover:cursor-pointer hover:opacity-70"
             key={hairstyle.name}
+            onClick={() => {
+              handleStyleClicked(hairstyle.name);
+            }}
           >
             <img src={hairstyle.image} alt="" className="w-full" />
             <h1 className="mt-1 text-center">{hairstyle.name}</h1>
