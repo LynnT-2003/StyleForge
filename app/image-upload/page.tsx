@@ -13,9 +13,8 @@ interface ModelDetailPageProps {
   };
 }
 
-export default function ModelDetailPage({
-  params: { model },
-}: ModelDetailPageProps) {
+export default function ModelDetailPage({ params }: ModelDetailPageProps) {
+  const model = params;
   const [isCameraOpen, setIsCameraOpen] = useState(false);
   const webcamRef = useRef<Webcam>(null);
   const cameraModalRef = useRef<HTMLDivElement | null>(null);
@@ -198,7 +197,7 @@ export default function ModelDetailPage({
             </Button>
             <div className="w-1/3 h-full pt-2 flex items-center justify-center z-99">
               <Button
-                onClick={() => handleCapture(model)}
+                onClick={() => handleCapture(model.model)}
                 className="p-[1.5rem] rounded-full aspect-square bg-gray-100 border-gray-300 border-[0.2rem] sm:border-[0.3rem] hover:bg-white"
                 variant={"ghost"}
               ></Button>
