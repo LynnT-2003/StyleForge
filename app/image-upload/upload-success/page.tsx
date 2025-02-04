@@ -130,7 +130,7 @@ const UploadSuccessScreen = () => {
             delayTime: data.delayTime,
             executionTime: data.executionTime,
             image: cloudinaryData.url,
-            prompt: "PrismaForge Special - Mystical Christmas Themed Portrait.",
+            prompt: "Styleforge Special - Hairstyle Transformation.",
             userId: user?.uid,
             username: user?.displayName,
           };
