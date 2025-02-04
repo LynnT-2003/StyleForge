@@ -71,7 +71,7 @@ export const buildHairTransformRequestBody = (
         },
         "7": {
           inputs: {
-            seed: 50917,
+            noise_seed: Math.floor(10000 + Math.random() * 90000),
             steps: 20,
             strength: 1,
             cfg: 1.5,
