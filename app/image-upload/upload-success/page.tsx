@@ -6,6 +6,8 @@ import { useRouter } from "next/navigation";
 import { User } from "firebase/auth";
 import { onAuthStateChange } from "@/lib/configs/firebase";
 import { buildHairTransformRequestBody } from "@/lib/services/hairstyleGeneration";
+import imageCompression from "browser-image-compression";
+
 // import {
 //   FacebookShareButton,
 //   FacebookIcon,
@@ -34,14 +36,14 @@ const UploadSuccessScreen = () => {
   const router = useRouter();
 
   const [loading, setLoading] = useState(false);
-  const [base64String, setBase64String] = useState<string | null>(null);
+  const [base64String, setBase64String] = useState<string>("");
   const [imageRef, setImageRef] = useState<string | null>(null);
   const [generatedImage, setGeneratedImage] = useState<string | null>(null);
   const [isCopied, setIsCopied] = useState(false);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const storedFile = localStorage.getItem("uploadedFile");
+      const storedFile = localStorage.getItem("uploadedFile") || "";
       const styleRef = localStorage.getItem("styleRefUrl");
       setBase64String(storedFile);
       setImageRef(styleRef);
@@ -50,6 +52,51 @@ const UploadSuccessScreen = () => {
 
   if (!base64String) {
     return <div>No file found.</div>;
+  }
+
+  const defaultOptions = {
+    maxSizeMB: 2.9,
+  };
+
+  const base64ToFile = (
+    base64: string,
+    fileName = "image.png",
+    mimeType = "image/png"
+  ) => {
+    try {
+      const byteString = atob(base64); // Directly decode Base64 string
+      const ab = new ArrayBuffer(byteString.length);
+      const ua = new Uint8Array(ab);
+
+      for (let i = 0; i < byteString.length; i++) {
+        ua[i] = byteString.charCodeAt(i);
+      }
+
+      return new File([ab], fileName, { type: mimeType });
+    } catch (error) {
+      throw new Error("Invalid Base64 string - Decoding failed.");
+    }
+  };
+
+  // Convert File back to Base64
+  const fileToBase64 = (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onloadend = () => resolve(reader.result as string);
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  };
+
+  async function compressFile(base64String: string, options = defaultOptions) {
+    console.log("Converting base64 to file...");
+    const file = base64ToFile(base64String);
+    console.log("Converted file:", file);
+    console.log("Compressing file...");
+    const compressedFile = await imageCompression(file, options);
+    console.log("Compressed file:", compressedFile);
+    console.log("Converting compressed file back to base64...");
+    return fileToBase64(compressedFile); // Convert back to base64 if needed
   }
 
   const handleOnClickGoBack = () => {
@@ -101,8 +148,11 @@ const UploadSuccessScreen = () => {
       }
 
       const data = await response.json();
+
       console.log("Success!");
       console.log("API Response:", data);
+      const compressedData = await compressFile(data.output.message);
+      console.log("Data Image Compression completed!");
       setGeneratedImage(data.output.message);
 
       if (!user) {
@@ -111,8 +161,8 @@ const UploadSuccessScreen = () => {
         );
       }
 
-      if (data.output.message) {
-        const base64Image = data.output.message;
+      if (compressedData) {
+        const base64Image = compressedData;
         console.log("User is logged in. Saving...");
         const cloudinaryResponse = await fetch("/api/upload-to-cloudinary", {
           method: "POST",
@@ -243,17 +293,6 @@ const UploadSuccessScreen = () => {
       )}
 
       {generatedImage && !loading && (
-        // <div className="">
-        //   <h1 className="mx-12 pt-[1.7rem] text-center text-2xl font-semibold font-sans motion-preset-slide-right">
-        //     Image Generated!
-        //   </h1>
-        //   <div className="relative mx-12 mt-7 rounded-lg flex items-center justify-center">
-        //     <img
-        //       src={`data:image/png;base64,${generatedImage}`} // Update the format if needed
-        //       className="w-full sm:w-[40%] aspect-square rounded-lg object-cover motion-preset-expand motion-duration-500"
-        //     />
-        //   </div>
-        // </div>
         <div className="w-[80%] sm:w-[35%] h-[90%] flex flex-col items-center justify-center">
           <h1 className="mx-12 text-center text-white pt-[1.7rem] text-2xl font-semibold font-sans motion-preset-slide-right">
             Generation Result
