@@ -124,21 +124,6 @@ export function AppSidebar() {
                 </SidebarMenuButton>
               </SidebarMenuItem>
 
-              <SidebarMenuItem
-                className="py-5 ml-[-0.4rem] hover:cursor-pointer hover:bg-[#181818] transition-all duration-150 ease-linear"
-                onClick={() => router.push("/favorites")}
-              >
-                <SidebarMenuButton
-                  asChild
-                  className="text-lg text-white space-x-1 active:text-gray-700"
-                >
-                  <a>
-                    <Heart className="ml-2 w-5 h-5" />
-                    <span>Favorites</span>
-                  </a>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-
               {/* <SidebarMenuItem
                 className="py-5 hover:cursor-pointer hover:bg-[#181818] transition-all duration-150 ease-linear"
                 onClick={() => router.push("/Prompt")}

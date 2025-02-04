@@ -1,26 +1,14 @@
 "use client";
 import React from "react";
 import { useRouter } from "next/navigation";
+import { hairstyles } from "@/constants/hairstyles";
 
 const StudioSection = () => {
   const router = useRouter();
 
-  const hairstyles = [
-    { name: "Luxe Waves", image: "/example/1.jpg" },
-    { name: "Sleek & Chic Bob", image: "/example/1.jpg" },
-    { name: "Textured Topknot", image: "/example/1.jpg" },
-    { name: "Boho Braids", image: "/example/1.jpg" },
-    { name: "Ponytail Style", image: "/example/1.jpg" },
-    { name: "Classic Shag", image: "/example/1.jpg" },
-    { name: "Messy Curls", image: "/example/1.jpg" },
-    { name: "Retro Pompadour", image: "/example/1.jpg" },
-    { name: "Modern Pixie", image: "/example/1.jpg" },
-    { name: "Beachy Lob", image: "/example/1.jpg" },
-  ];
-
-  const handleStyleClicked = (style: string) => {
-    console.log(style);
-    localStorage.setItem("style", style);
+  const handleStyleClicked = (styleRefUrl: string) => {
+    console.log(styleRefUrl);
+    localStorage.setItem("styleRefUrl", styleRefUrl);
     router.push("/image-upload");
   };
 
@@ -34,11 +22,13 @@ const StudioSection = () => {
           <div
             className="w-[45%] md:w-[240px] hover:cursor-pointer hover:opacity-70"
             key={hairstyle.name}
-            onClick={() => {
-              handleStyleClicked(hairstyle.name);
-            }}
+            onClick={() => handleStyleClicked(hairstyle.image)}
           >
-            <img src={hairstyle.image} alt="" className="w-full" />
+            <img
+              src={hairstyle.image}
+              alt=""
+              className="w-full h-[180px] md:h-[220px] object-cover object-top md:object-center rounded-lg"
+            />
             <h1 className="mt-1 text-center">{hairstyle.name}</h1>
           </div>
         ))}

@@ -76,7 +76,7 @@ const ModelDetailPage: React.FC = () => {
       reader.onload = () => {
         const base64String = reader.result as string;
         localStorage.setItem("uploadedFile", base64String);
-        router.push("/ImageUpload/upload-success");
+        router.push("/image-upload/upload-success");
       };
 
       reader.readAsDataURL(file);
@@ -117,7 +117,7 @@ const ModelDetailPage: React.FC = () => {
             ref={webcamRef}
             audio={false}
             screenshotFormat="image/jpeg"
-            className="h-full w-full sm:w-[70%] object-cover bg-red-800 rounded-t-xl transform scale-x-[-1]"
+            className="h-full w-full sm:w-[70%] object-cover rounded-t-xl transform scale-x-[-1]"
           />
 
           <div className="w-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-full flex items-center justify-center">
@@ -204,9 +204,7 @@ const ModelDetailPage: React.FC = () => {
               ></Button>
             </div>
             <Button
-              onClick={() => {
-                router.push("/");
-              }}
+              onClick={handleClick}
               variant={"ghost"}
               className="w-1/3 flex items-center justify-center bg-none h-full hover:text-opacity-50"
               style={{
