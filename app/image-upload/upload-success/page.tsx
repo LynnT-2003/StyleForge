@@ -168,7 +168,7 @@ const UploadSuccessScreen = () => {
         );
       }
 
-      if (compressedData) {
+      if (compressedData && user) {
         const base64Image = compressedData;
         console.log("User is logged in. Saving...");
         const cloudinaryResponse = await fetch("/api/upload-to-cloudinary", {
@@ -232,7 +232,7 @@ const UploadSuccessScreen = () => {
   };
 
   return (
-    <div className="h-screen w-full flex flex-col items-center">
+    <div className="h-[100dvh] md:h-screen w-full flex flex-col items-center">
       {!generatedImage && !loading && (
         <div className="px-0 md:px-36 items-center justify-center flex flex-col h-[90dvh]">
           <div className="my-6">
