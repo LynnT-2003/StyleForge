@@ -39,6 +39,7 @@ const UploadSuccessScreen = () => {
   const [base64String, setBase64String] = useState<string>("");
   const [imageRef, setImageRef] = useState<string | null>(null);
   const [generatedImage, setGeneratedImage] = useState<string | null>(null);
+  const [generationError, setGenerationError] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
 
   useEffect(() => {
@@ -151,6 +152,12 @@ const UploadSuccessScreen = () => {
 
       console.log("Success!");
       console.log("API Response:", data);
+
+      if (data === null) {
+        setGenerationError(true);
+        return;
+      }
+
       const compressedData = await compressFile(data.output.message);
       console.log("Data Image Compression completed!");
       setGeneratedImage(data.output.message);
@@ -228,9 +235,21 @@ const UploadSuccessScreen = () => {
     <div className="h-screen w-full flex flex-col items-center">
       {!generatedImage && !loading && (
         <div className="px-0 md:px-36 items-center justify-center flex flex-col h-[90dvh]">
-          <h1 className="text-center my-6 font-sans font-semibold text-2xl">
-            Image Uploaded Successfully
-          </h1>
+          <div className="my-6">
+            <h1 className="text-center font-sans font-semibold text-2xl">
+              {generationError === false
+                ? "Image Generation Failed"
+                : "Image Uploaded Successfully"}
+            </h1>
+            {generationError === false && (
+              <h1 className="text-center text-red-400 px-12 mt-4">
+                Please try again by uploading a clear, front-facing selfie with
+                good lighting and minimal background distractions. Ensure your
+                face is fully visible and not covered by any objects.
+              </h1>
+            )}
+          </div>
+
           <div className="flex flex-col items-center justify-center px-12 md:px-0 w-full">
             <div className="flex gap-[5%]">
               <img

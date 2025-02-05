@@ -61,7 +61,7 @@ export default function HistoryDetailClient({ imageId }) {
     <div className="h-[100dvh] sm:h-screen overflow-y-hidden">
       <div className="h-full w-full flex flex-col items-center mt-[1.15rem] md:mt-[1.75rem] lg:mt-0 lg:justify-center">
         <h1 className="text-white mb-2 font-sans text-lg sm:text-2xl font-extralight">
-          Created by TYS 🚀
+          Created by StyleForge 🚀
         </h1>
         <h1 className="hidden sm:block text-white mb-4 font-sans text-lg sm:text-md font-extralight">
           Your image is ready to be downloaded.
