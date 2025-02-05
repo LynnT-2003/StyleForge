@@ -35,7 +35,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="md:w-screen overflow-x-hidden">
+    <html lang="en" className="w-screen overflow-x-hidden">
       <head>
         <Head>
           {/* Global Metadata */}
