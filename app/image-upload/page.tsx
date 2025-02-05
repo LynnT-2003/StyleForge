@@ -14,6 +14,16 @@ interface ModelDetailPageProps {
 
 const ModelDetailPage: React.FC = () => {
   const { model } = useParams<{ model: string }>();
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const storedFile = localStorage.getItem("uploadedFile") || "";
+      if (storedFile != "") {
+        router.push("/image-upload/upload-success");
+      }
+    }
+  }, []);
+
   const [isCameraOpen, setIsCameraOpen] = useState(false);
   const webcamRef = useRef<Webcam>(null);
   const cameraModalRef = useRef<HTMLDivElement | null>(null);

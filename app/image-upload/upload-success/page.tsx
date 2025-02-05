@@ -231,9 +231,8 @@ const UploadSuccessScreen = () => {
           <h1 className="text-center my-6 font-sans font-semibold text-2xl">
             Image Uploaded Successfully
           </h1>
-          <div className="flex flex-col items-center justify-center px-12 md:px-0">
+          <div className="flex flex-col items-center justify-center px-12 md:px-0 w-full">
             <div className="flex gap-[5%]">
-              {" "}
               <img
                 src={base64String}
                 alt="Uploaded Image"
@@ -246,22 +245,22 @@ const UploadSuccessScreen = () => {
               />
             </div>
 
-            <div className="py-6 md:py-6 flex md:flex-row flex-col space-y-4 justify-between w-full">
+            <div className="py-6 md:py-6 flex md:flex-row flex-col space-y-4 md:space-y-0 space-x-0 md:space-x-4 items-center justify-between w-full">
               <button
                 onClick={handleOnClickRetakePhoto}
-                className="text-xs md:text-lg border-[0.25px] border-white text-white rounded-sm py-2 md:py-4 px-4 md:px-24 font-sans hover:bg-white hover:text-black transition-all duration-300 ease-in-out"
+                className="w-full text-xs md:text-lg border-[0.25px] border-white text-white rounded-sm py-2 md:py-3 px-4 font-sans hover:bg-white hover:text-black transition-all duration-300 ease-in-out"
               >
                 Retake Photo
               </button>
               <button
                 onClick={handleOnClickReselectStyle}
-                className="text-xs md:text-lg border-[0.25px] border-white text-white rounded-sm py-2 md:py-4 px-4 md:px-24 font-sans hover:bg-white hover:text-black transition-all duration-300 ease-in-out"
+                className="w-full text-xs md:text-lg border-[0.25px] border-white text-white rounded-sm py-2 md:py-3 px-4 font-sans hover:bg-white hover:text-black transition-all duration-300 ease-in-out"
               >
                 Reselect Style
               </button>
               <button
                 onClick={handleOnClickContinue}
-                className="bg-white text-black text-xs md:text-lg border-[0.25px] border-white md:text-white rounded-sm py-2 md:py-4 px-4 md:px-24 font-sans hover:bg-white hover:text-black transition-all duration-300 ease-in-out"
+                className="bg-white text-black w-full text-xs md:text-lg border-[0.25px] border-white rounded-sm py-2 md:py-3 px-4 font-sans hover:bg-emerald-800 hover:border-emerald-800 hover:text-white transition-all duration-200 ease-in-out"
               >
                 Continue
               </button>
