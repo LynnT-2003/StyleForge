@@ -10,7 +10,6 @@ import {
   onAuthStateChange,
   User,
 } from "@/lib/configs/firebase";
-import { sign } from "crypto";
 import { LogOutIcon } from "lucide-react";
 
 const HomeSection = () => {
@@ -144,14 +143,22 @@ const HomeSection = () => {
           >
             Get Started
           </Button>
-          <div
-            className="w-full flex items-center justify-center py-1 space-x-2"
-            style={{ backgroundColor: "rgba(30, 30, 30, 0.8)" }}
-            onClick={handleSignIn}
-          >
-            <Image src="/brands/google.png" alt="Logo" width={40} height={40} />
-            <h1 className="text-sm font-sans">Sign in With Google</h1>
-          </div>
+
+          {!user && (
+            <div
+              className="w-full flex items-center justify-center py-1 space-x-2"
+              style={{ backgroundColor: "rgba(30, 30, 30, 0.8)" }}
+              onClick={handleSignIn}
+            >
+              <Image
+                src="/brands/google.png"
+                alt="Logo"
+                width={40}
+                height={40}
+              />
+              <h1 className="text-sm font-sans">Sign in With Google</h1>
+            </div>
+          )}
         </div>
       </div>
 
