@@ -237,11 +237,11 @@ const UploadSuccessScreen = () => {
         <div className="px-0 md:px-36 items-center justify-center flex flex-col h-[90dvh]">
           <div className="my-6">
             <h1 className="text-center font-sans font-semibold text-2xl">
-              {generationError === false
+              {generationError === true
                 ? "Image Generation Failed"
                 : "Image Uploaded Successfully"}
             </h1>
-            {generationError === false && (
+            {generationError === true && (
               <h1 className="text-center text-red-400 px-12 mt-4">
                 Please try again by uploading a clear, front-facing selfie with
                 good lighting and minimal background distractions. Ensure your
