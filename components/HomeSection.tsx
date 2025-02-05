@@ -18,6 +18,11 @@ const HomeSection = () => {
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
+    localStorage.removeItem("uploadedFile");
+    localStorage.removeItem("styleRefUrl");
+  });
+
+  useEffect(() => {
     const unsubscribe = onAuthStateChange((user) => {
       if (user) {
         setUser(user);
@@ -31,12 +36,10 @@ const HomeSection = () => {
 
   const handleSignIn = async () => {
     await signInWithGoogle();
-    console.log("Sign-in successful!");
   };
 
   const handleSignOut = async () => {
     await signOutUser();
-    console.log("Sign-out successful!");
   };
 
   const [getStartedClicked, setGetStartedClicked] = useState(false);
@@ -144,6 +147,7 @@ const HomeSection = () => {
           <div
             className="w-full flex items-center justify-center py-1 space-x-2"
             style={{ backgroundColor: "rgba(30, 30, 30, 0.8)" }}
+            onClick={handleSignIn}
           >
             <Image src="/brands/google.png" alt="Logo" width={40} height={40} />
             <h1 className="text-sm font-sans">Sign in With Google</h1>
