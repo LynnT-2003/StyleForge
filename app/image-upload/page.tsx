@@ -217,9 +217,9 @@ const ModelDetailPage: React.FC = () => {
               onClick={handleClick}
               variant={"ghost"}
               className="w-1/3 flex items-center justify-center bg-none h-full hover:text-opacity-50"
-              style={{
-                color: "var(--text-primary)",
-              }}
+              // style={{
+              //   color: "var(--text-primary)",
+              // }}
             >
               <div className="flex flex-col h-9 items-center justify-center">
                 <img
